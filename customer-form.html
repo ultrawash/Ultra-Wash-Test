@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultra Wash — Customer Form</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
+<div class="layout">
+
+  <!-- ======================== SIDEBAR ======================== -->
+  <div class="sidebar">
+    <div class="brand">Ultra Wash</div>
+    <nav>
+      <a href="index.html">🏠 Dashboard</a>
+      <a href="customer-form.html" class="active">📝 Customer Form</a>
+      <a href="update-form.html">🔧 Worker Update Form</a>
+    </nav>
+  </div>
+
+  <!-- ======================== MAIN CONTENT ==================== -->
+  <div class="main">
+
+    <!-- ======================== TOPBAR ======================== -->
+    <div class="topbar">
+      <div class="title">Customer Form</div>
+      <div class="right">
+        <div class="toggle-darkmode"><div class="circle"></div></div>
+      </div>
+    </div>
+
+    <!-- ======================== PAGE CONTENT =================== -->
+    <div class="content">
+
+      <div class="card">
+        <h2>New Customer Submission</h2>
+        <p>Please complete the form below. All required logic is automated.</p>
+      </div>
+
+      <!-- ======================== FORM ======================== -->
+      <div class="card">
+        <form id="customerFormPage" autocomplete="off">
+
+          <!-- SECTION: Personal Info -->
+          <div class="section-title">👤 Personal Information</div>
+
+          <label>Full Name</label>
+          <input type="text" name="name" required placeholder="Enter full name" />
+
+          <label>Phone Number</label>
+          <input type="tel" name="phone" required placeholder="+673 8xxxxxx" />
+
+          <hr style="margin:25px 0; border:1px solid var(--border);" />
+
+          <!-- SECTION: Package -->
+          <div class="section-title">📦 Service Package</div>
+
+          <label>Package Type</label>
+          <select name="pricingService" id="pricingServiceSelect" required>
+            <option value="">-- Select Package --</option>
+            <option value="membership">Membership</option>
+            <option value="jimat">Jimat Cuci Bersama</option>
+            <option value="wash">Wash, Dry & Fold</option>
+            <option value="folding">Folding</option>
+            <option value="ironing">Ironing</option>
+          </select>
+
+          <!-- Membership -->
+          <div id="membershipFields" class="hidden">
+            <label>Membership Plan</label>
+            <select name="membershipPlan">
+              <option value="">Select Plan</option>
+              <option value="120-12-60">$120 – 12 trips (60kg)</option>
+              <option value="100-2-50">$100 – 2x/week (max 50kg)</option>
+            </select>
+          </div>
+
+          <!-- Jimat -->
+          <div id="jimatFields" class="hidden">
+            <label>Choose Box</label>
+            <select name="jimatPlan">
+              <option value="">Select Box</option>
+              <option value="16">$16 / 1 box</option>
+              <option value="28">$28 / 2 boxes</option>
+              <option value="40">$40 / 4 boxes</option>
+            </select>
+          </div>
+
+          <hr style="margin:25px 0; border:1px solid var(--border);" />
+
+          <!-- SECTION: Service Selection -->
+          <div class="section-title">🚚 Service Type</div>
+
+          <div class="service-options">
+            <label class="service-option">
+              <input type="checkbox" class="service-checkbox" value="Self Drop-off & Pick Up" />
+              Self Drop-off & Pick Up
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="service-checkbox" value="Pick Up Only" />
+              Pick Up Only
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="service-checkbox" value="Delivery Only" />
+              Delivery Only
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="service-checkbox" value="Pick Up & Delivery" />
+              Pick Up & Delivery
+            </label>
+          </div>
+
+          <input type="hidden" name="service" id="service" required />
+
+          <!-- ADDRESS: Single -->
+          <div id="singleAddressSection" class="hidden" style="margin-top:20px;">
+            <label>Address</label>
+            <textarea name="singleAddress" placeholder="Enter address"></textarea>
+
+            <label>Map Link</label>
+            <input type="text" name="singleMapLink" placeholder="Paste Google Maps link" />
+
+            <label>Date & Time</label>
+            <input type="datetime-local" id="singleDateTime" name="singleDateTime" />
+          </div>
+
+          <!-- ADDRESS: Pickup & Delivery -->
+          <div id="pickUpDeliverySection" class="hidden" style="margin-top:20px;">
+
+            <label>Pickup Address</label>
+            <textarea name="pickupAddress" placeholder="Enter pickup location"></textarea>
+
+            <label>Pickup Map Link</label>
+            <input type="text" name="pickupMapLink" placeholder="Paste map link" />
+
+            <label>Pickup Date & Time</label>
+            <input type="datetime-local" name="pickupDate" id="pickupDate" />
+
+            <hr style="margin:25px 0;" />
+
+            <label>Delivery Address</label>
+            <textarea name="deliveryAddress" placeholder="Enter delivery location"></textarea>
+
+            <label>Delivery Map Link</label>
+            <input type="text" name="deliveryMapLink" placeholder="Paste map link" />
+
+            <label>Delivery Date & Time</label>
+            <input type="datetime-local" name="deliveryDate" id="deliveryDate" />
+          </div>
+
+          <hr style="margin:25px 0; border:1px solid var(--border);" />
+
+          <button type="submit">Submit Form</button>
+
+        </form><!-- end form -->
+      </div><!-- end card -->
+
+    </div><!-- end content -->
+
+  </div><!-- end main -->
+
+</div><!-- end layout -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>
