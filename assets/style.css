@@ -270,31 +270,30 @@ button:hover,
   border-color: var(--accent);
 }
 
-/* =========================================================
-   PACKAGE OPTIONS — Premium Card Style (NEW)
-======================================================== */
+/* =============================================
+   PACKAGE OPTIONS — Compact Neat Alignment
+   (Matches Service Type layout)
+============================================= */
+
 .package-options {
   display: flex;
-  gap: 18px;
   flex-wrap: wrap;
-  margin-bottom: 22px;
+  gap: 14px;
+  margin-bottom: 20px;
 }
 
 .package-option {
-  width: 150px;
-  height: 130px;
-  background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background: var(--card-bg);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
   cursor: pointer;
-  transition: 0.25s ease;
-  padding: 12px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition);
+  min-width: 200px;
+  height: 48px;
 }
 
 .package-option input {
@@ -302,24 +301,22 @@ button:hover,
 }
 
 .package-option .icon {
-  font-size: 32px;
-  margin-bottom: 8px;
+  font-size: 20px;
+  margin: 0;
 }
 
 .package-option .label {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .package-option:hover {
-  transform: translateY(-3px);
   border-color: var(--accent);
 }
 
 .package-option.selected {
   border-color: var(--accent);
   background: rgba(255,109,90,0.07);
-  box-shadow: 0 6px 14px rgba(255,109,90,0.15);
 }
 
 body.dark .package-option.selected {
