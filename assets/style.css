@@ -1,26 +1,15 @@
 /* =========================================================
    ULTRA WASH ADMIN SYSTEM — GLOBAL STYLESHEET
-   Dashboard UI + Forms + Dark Mode
+   Premium UI + Dashboard + Forms + Dark Mode
    ---------------------------------------------------------
-   COLORS (LIGHT MODE)
-   ---------------------------------------------------------
-   Background       #f5f7fb
-   Card Background  #ffffff
-   Text Dark        #1f1f1f
-   Label Text       #555
-   Border           #e1e4ea
-   Accent (Primary) #ff6d5a  (Ultra Wash Branding)
-   Shadow           rgba(0,0,0,0.08)
-   ---------------------------------------------------------
-   COLORS (DARK MODE)
-   ---------------------------------------------------------
-   Background       #1f1f1f
-   Card Background  #2a2a2a
-   Text Light       #f7f7f7
-   Border           #3a3a3a
-   Accent           #ff6d5a
-   Shadow           rgba(0,0,0,0.25)
-========================================================= */
+   COLORS (LIGHT)
+   bg: #f5f7fb
+   card: #ffffff
+   text: #1f1f1f
+   accent: #ff6d5a  (Ultra Wash)
+   border: #e1e4ea
+   shadow: rgba(0,0,0,0.08)
+======================================================== */
 
 :root {
   --bg: #f5f7fb;
@@ -29,32 +18,33 @@
   --label: #555;
   --border: #e1e4ea;
   --accent: #ff6d5a;
-  --radius: 10px;
-  --shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 18px rgba(0,0,0,0.08);
   --sidebar-bg: #ffffff;
   --sidebar-text: #1f1f1f;
   --topbar-bg: #ffffff;
   --transition: 0.25s ease;
 }
 
-/* ===================== DARK MODE ====================== */
-
+/* =========================================================
+   DARK MODE
+======================================================== */
 body.dark {
   --bg: #1f1f1f;
   --card-bg: #2a2a2a;
   --text: #f7f7f7;
-  --label: #cccccc;
+  --label: #dddddd;
   --border: #3a3a3a;
   --sidebar-bg: #252525;
   --sidebar-text: #f7f7f7;
   --topbar-bg: #2a2a2a;
-  --shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  --shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
-/* ======================================================
-   GLOBAL RESETS
-====================================================== */
-
+/* =========================================================
+   GLOBAL RESET
+======================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -68,73 +58,71 @@ body {
   transition: background var(--transition), color var(--transition);
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
+a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
-/* ======================================================
+/* =========================================================
    LAYOUT — SIDEBAR + TOPBAR
-====================================================== */
-
+======================================================== */
 .layout {
   display: flex;
   min-height: 100vh;
   width: 100%;
 }
 
-/* --------------------- Sidebar ---------------------- */
-
+/* sidebar */
 .sidebar {
   width: 240px;
   background: var(--sidebar-bg);
   border-right: 1px solid var(--border);
+  padding: 22px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  transition: background var(--transition);
+  transition: var(--transition);
 }
 
 .sidebar .brand {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 32px;
   color: var(--accent);
 }
 
 .sidebar nav a {
   display: block;
-  padding: 12px 15px;
-  margin-bottom: 8px;
-  border-radius: var(--radius);
-  color: var(--sidebar-text);
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
   font-weight: 500;
-  transition: 0.2s ease;
+  margin-bottom: 10px;
+  color: var(--sidebar-text);
+  transition: 0.25s ease;
 }
 
 .sidebar nav a:hover,
 .sidebar nav a.active {
   background: var(--accent);
-  color: #ffffff;
+  color: white;
 }
 
-/* --------------------- Topbar ---------------------- */
+/* main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
+/* topbar */
 .topbar {
-  height: 60px;
-  width: 100%;
+  height: 64px;
   background: var(--topbar-bg);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 25px;
+  padding: 0 28px;
   position: sticky;
   top: 0;
   z-index: 10;
-  transition: var(--transition);
 }
 
 .topbar .title {
@@ -142,27 +130,20 @@ ul { list-style: none; }
   font-weight: 700;
 }
 
-.topbar .right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* ----------------- Dark Mode Toggle ---------------- */
-
+/* dark mode toggle */
 .toggle-darkmode {
-  width: 46px;
-  height: 22px;
+  width: 48px;
+  height: 24px;
   border-radius: 20px;
   background: var(--border);
-  position: relative;
   cursor: pointer;
+  position: relative;
   transition: var(--transition);
 }
 
 .toggle-darkmode .circle {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background: var(--accent);
   border-radius: 50%;
   position: absolute;
@@ -179,43 +160,37 @@ body.dark .toggle-darkmode .circle {
   left: 26px;
 }
 
-/* ======================================================
-   PAGE CONTENT
-====================================================== */
-
+/* =========================================================
+   CONTENT + CARDS
+======================================================== */
 .content {
-  flex: 1;
-  padding: 30px;
+  padding: 32px;
 }
-
-/* ======================================================
-   CARDS / PANELS
-====================================================== */
 
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 20px;
+  padding: 24px;
+  margin-bottom: 28px;
   box-shadow: var(--shadow);
-  margin-bottom: 25px;
-  transition: background var(--transition), border var(--transition);
+  transition: var(--transition);
 }
 
 .card h2 {
-  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 8px;
 }
 
-/* ======================================================
+/* =========================================================
    FORMS
-====================================================== */
-
+======================================================== */
 form label {
+  display: block;
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 6px;
-  display: block;
   color: var(--label);
+  margin-bottom: 6px;
 }
 
 input[type="text"],
@@ -226,19 +201,16 @@ textarea,
 select {
   width: 100%;
   padding: 12px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--card-bg);
   color: var(--text);
-  font-size: 14px;
   margin-bottom: 18px;
+  font-size: 14px;
   transition: var(--transition);
 }
 
-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
+textarea { resize: vertical; min-height: 80px; }
 
 input:focus,
 textarea:focus,
@@ -246,95 +218,131 @@ select:focus {
   outline: 2px solid var(--accent);
 }
 
-/* ======================================================
+/* =========================================================
    BUTTONS
-====================================================== */
-
+======================================================== */
 button,
 .btn {
   background: var(--accent);
   border: none;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: var(--radius);
+  color: white;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-weight: 600;
-  font-size: 14px;
-  transition: var(--transition);
+  transition: 0.25s ease;
 }
 
 button:hover,
 .btn:hover {
-  background: #e75444;
+  background: #e25a4b;
 }
 
-/* ======================================================
-   CHECKBOX SERVICE STYLE
-====================================================== */
-
+/* =========================================================
+   SERVICE TYPE — Checkbox Boxes
+======================================================== */
 .service-options {
   display: flex;
-  gap: 15px;
-  margin-bottom: 18px;
   flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 18px;
 }
 
 .service-option {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 14px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  padding: 10px 15px;
-  border-radius: var(--radius);
+  gap: 10px;
   cursor: pointer;
   transition: var(--transition);
+}
+
+.service-option input {
+  width: 18px;
+  height: 18px;
 }
 
 .service-option:hover {
   border-color: var(--accent);
 }
 
-.service-option input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-}
-
-/* ======================================================
-   UTILITIES
-====================================================== */
-
-.section-title {
-  font-size: 18px;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-.flex {
+/* =========================================================
+   PACKAGE OPTIONS — Premium Card Style (NEW)
+======================================================== */
+.package-options {
   display: flex;
-  gap: 20px;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
 }
 
-.hidden {
-  display: none !important;
-}
-
-.center {
+.package-option {
+  width: 150px;
+  height: 130px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+  padding: 12px;
   text-align: center;
 }
 
-/* ======================================================
-   RESPONSIVE
-====================================================== */
-
-@media (max-width: 900px) {
-  .layout {
-    flex-direction: column;
-  }
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+.package-option input {
+  display: none;
 }
 
+.package-option .icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.package-option .label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.package-option:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.package-option.selected {
+  border-color: var(--accent);
+  background: rgba(255,109,90,0.07);
+  box-shadow: 0 6px 14px rgba(255,109,90,0.15);
+}
+
+body.dark .package-option.selected {
+  background: rgba(255,109,90,0.2);
+}
+
+/* =========================================================
+   UTILITIES
+======================================================== */
+.hidden { display: none !important; }
+
+.flex { display: flex; gap: 20px; }
+
+.center { text-align: center; }
+
+/* =========================================================
+   RESPONSIVE
+======================================================== */
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+    border-right: none;
+  }
+}
