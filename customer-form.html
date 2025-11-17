@@ -36,14 +36,16 @@
 
       <div class="card">
         <h2>New Customer Submission</h2>
-        <p>Please complete the form below. All required logic is automated.</p>
+        <p>Complete the form below. All logic and pricing will be handled automatically.</p>
       </div>
 
       <!-- ======================== FORM ======================== -->
       <div class="card">
         <form id="customerFormPage" autocomplete="off">
 
-          <!-- SECTION: Personal Info -->
+          <!-- ======================================================
+               PERSONAL INFORMATION
+          ====================================================== -->
           <div class="section-title">👤 Personal Information</div>
 
           <label>Full Name</label>
@@ -52,20 +54,50 @@
           <label>Phone Number</label>
           <input type="tel" name="phone" required placeholder="+673 8xxxxxx" />
 
-          <hr style="margin:25px 0; border:1px solid var(--border);" />
+          <hr />
 
-          <!-- SECTION: Package -->
+          <!-- ======================================================
+               SERVICE PACKAGE — NEW CHECKBOX CARDS
+          ====================================================== -->
           <div class="section-title">📦 Service Package</div>
 
-          <label>Package Type</label>
-          <select name="pricingService" id="pricingServiceSelect" required>
-            <option value="">-- Select Package --</option>
-            <option value="membership">Membership</option>
-            <option value="jimat">Jimat Cuci Bersama</option>
-            <option value="wash">Wash, Dry & Fold</option>
-            <option value="folding">Folding</option>
-            <option value="ironing">Ironing</option>
-          </select>
+          <div class="package-options">
+
+            <label class="package-option">
+              <input type="checkbox" class="package-checkbox" value="membership" />
+              <div class="icon">📘</div>
+              <div class="label">Membership</div>
+            </label>
+
+            <label class="package-option">
+              <input type="checkbox" class="package-checkbox" value="jimat" />
+              <div class="icon">📦</div>
+              <div class="label">Jimat Box</div>
+            </label>
+
+            <label class="package-option">
+              <input type="checkbox" class="package-checkbox" value="wash" />
+              <div class="icon">🧺</div>
+              <div class="label">Wash & Fold</div>
+            </label>
+
+            <label class="package-option">
+              <input type="checkbox" class="package-checkbox" value="folding" />
+              <div class="icon">📑</div>
+              <div class="label">Folding</div>
+            </label>
+
+            <label class="package-option">
+              <input type="checkbox" class="package-checkbox" value="ironing" />
+              <div class="icon">👕</div>
+              <div class="label">Ironing</div>
+            </label>
+
+          </div>
+
+          <input type="hidden" id="pricingService" name="pricingService" required />
+
+          <!-- ========================= PACKAGE FIELDS ========================= -->
 
           <!-- Membership -->
           <div id="membershipFields" class="hidden">
@@ -73,7 +105,7 @@
             <select name="membershipPlan">
               <option value="">Select Plan</option>
               <option value="120-12-60">$120 – 12 trips (60kg)</option>
-              <option value="100-2-50">$100 – 2x/week (max 50kg)</option>
+              <option value="100-2-50">$100 – 2x/week (50kg)</option>
             </select>
           </div>
 
@@ -88,12 +120,33 @@
             </select>
           </div>
 
-          <hr style="margin:25px 0; border:1px solid var(--border);" />
+          <!-- Wash -->
+          <div id="washFields" class="hidden">
+            <label>Total Weight (kg)</label>
+            <input type="number" name="washKg" min="1" placeholder="Enter kg" />
+          </div>
 
-          <!-- SECTION: Service Selection -->
+          <!-- Folding -->
+          <div id="foldingFields" class="hidden">
+            <label>Total Weight (kg)</label>
+            <input type="number" name="foldKg" min="1" placeholder="Enter kg" />
+          </div>
+
+          <!-- Ironing -->
+          <div id="ironingFields" class="hidden">
+            <label>Total Pieces</label>
+            <input type="number" name="ironPcs" min="1" placeholder="Enter pieces" />
+          </div>
+
+          <hr />
+
+          <!-- ======================================================
+               SERVICE TYPE — NEW CLEAN CHECKBOX CARDS
+          ====================================================== -->
           <div class="section-title">🚚 Service Type</div>
 
           <div class="service-options">
+
             <label class="service-option">
               <input type="checkbox" class="service-checkbox" value="Self Drop-off & Pick Up" />
               Self Drop-off & Pick Up
@@ -113,11 +166,16 @@
               <input type="checkbox" class="service-checkbox" value="Pick Up & Delivery" />
               Pick Up & Delivery
             </label>
+
           </div>
 
           <input type="hidden" name="service" id="service" required />
 
-          <!-- ADDRESS: Single -->
+          <!-- ======================================================
+               ADDRESS SECTIONS
+          ====================================================== -->
+
+          <!-- Single (Pick up only OR Delivery only) -->
           <div id="singleAddressSection" class="hidden" style="margin-top:20px;">
             <label>Address</label>
             <textarea name="singleAddress" placeholder="Enter address"></textarea>
@@ -129,7 +187,7 @@
             <input type="datetime-local" id="singleDateTime" name="singleDateTime" />
           </div>
 
-          <!-- ADDRESS: Pickup & Delivery -->
+          <!-- Pickup & Delivery -->
           <div id="pickUpDeliverySection" class="hidden" style="margin-top:20px;">
 
             <label>Pickup Address</label>
@@ -141,7 +199,7 @@
             <label>Pickup Date & Time</label>
             <input type="datetime-local" name="pickupDate" id="pickupDate" />
 
-            <hr style="margin:25px 0;" />
+            <hr />
 
             <label>Delivery Address</label>
             <textarea name="deliveryAddress" placeholder="Enter delivery location"></textarea>
@@ -151,20 +209,21 @@
 
             <label>Delivery Date & Time</label>
             <input type="datetime-local" name="deliveryDate" id="deliveryDate" />
+
           </div>
 
-          <hr style="margin:25px 0; border:1px solid var(--border);" />
+          <hr />
 
           <button type="submit">Submit Form</button>
 
-        </form><!-- end form -->
-      </div><!-- end card -->
+        </form>
+      </div>
 
-    </div><!-- end content -->
+    </div>
 
-  </div><!-- end main -->
+  </div>
 
-</div><!-- end layout -->
+</div>
 
 <script src="assets/script.js"></script>
 </body>
