@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ultra Wash Admin Dashboard</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultra Wash — Dashboard</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 
 <body>
 <div class="layout">
 
+  <!-- ======================== SIDEBAR ======================== -->
   <div class="sidebar">
     <div class="brand">Ultra Wash</div>
     <nav>
@@ -19,31 +20,42 @@
     </nav>
   </div>
 
+  <!-- ======================== MAIN ========================== -->
   <div class="main">
+
+    <!-- ======================== TOPBAR ======================== -->
     <div class="topbar">
       <div class="title">Dashboard</div>
+
       <div class="right">
         <div class="toggle-darkmode"><div class="circle"></div></div>
       </div>
     </div>
 
+    <!-- ======================== CONTENT ======================= -->
     <div class="content">
 
       <div class="card">
         <h2>Welcome to Ultra Wash Admin System</h2>
-        <p>Use the navigation below to quickly access forms and tools.</p>
+        <p>Manage customer submissions and worker updates with ease.</p>
       </div>
 
       <div class="flex">
-        <a class="card action-card" href="customer-form.html" style="flex:1; text-align:center;">
+
+        <!-- Customer Form -->
+        <a class="card action-card" href="customer-form.html"
+           style="flex:1; text-align:center; cursor:pointer;">
           <h2>📝 Customer Form</h2>
-          <p>Create new customer submission</p>
+          <p>Create a new customer request</p>
         </a>
 
-        <a class="card action-card" href="update-form.html" style="flex:1; text-align:center;">
+        <!-- Worker Form -->
+        <a class="card action-card" href="update-form.html"
+           style="flex:1; text-align:center; cursor:pointer;">
           <h2>🔧 Worker Update Form</h2>
-          <p>Update customer order details</p>
+          <p>Update ongoing customer orders</p>
         </a>
+
       </div>
 
     </div>
