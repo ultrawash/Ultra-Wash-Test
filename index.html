@@ -1,474 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ultra Wash Customer Form</title>
-  <style>
-    :root {
-      --font-family: 'Open Sans', sans-serif;
-      --font-size-label: 14px;
-      --font-size-input: 14px;
-      --font-size-header: 22px;
-
-      --color-background: #f6f7fa;
-      --color-card-bg: #ffffff;
-      --color-card-border: #dbdfe7;
-      --color-card-shadow: rgba(99, 77, 255, 0.06);
-      --color-header: #333;
-      --color-label: #555;
-      --color-input-border: #ccc;
-      --color-input-text: #333;
-      --color-focus-border: #5a4cc2;
-      --color-btn-bg: #ff6d5a;
-      --color-btn-text: #fff;
-
-      --radius: 6px;
-      --container-width: 440px;
-    }
-
-    body {
-      font-family: var(--font-family);
-      background-color: var(--color-background);
-      display: flex;
-      justify-content: center;
-      padding: 32px;
-    }
-
-    form {
-      background: var(--color-card-bg);
-      border: 1px solid var(--color-card-border);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 12px var(--color-card-shadow);
-      padding: 24px;
-      width: var(--container-width);
-    }
-
-    h1 {
-      text-align: center;
-      font-size: var(--font-size-header);
-      color: var(--color-header);
-      margin-bottom: 24px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      font-size: var(--font-size-label);
-    }
-
-    .description {
-      font-size: 12px;
-      color: var(--color-label);
-      margin-top: 4px;
-      margin-bottom: 16px;
-      font-style: italic;
-    }
-
-    input[type="text"],
-    input[type="date"],
-    textarea,
-    select {
-      width: 100%;
-      padding: 10px;
-      font-size: var(--font-size-input);
-      border: 1px solid var(--color-input-border);
-      border-radius: var(--radius);
-      margin-bottom: 16px;
-      box-sizing: border-box;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      outline: none;
-      border-color: var(--color-focus-border);
-      box-shadow: 0 0 4px var(--color-focus-border);
-    }
-
-    textarea {
-      resize: vertical;
-    }
-
-    .terms-header {
-      font-size: var(--font-size-label);
-      font-weight: 600;
-      color: var(--color-header);
-      margin-top: 20px;
-      margin-bottom: 8px;
-      cursor: pointer;
-      background: #f0f0f0;
-      padding: 8px 12px;
-      border-radius: var(--radius);
-    }
-
-    .terms-content {
-      display: none;
-      font-size: 13px;
-      color: var(--color-label);
-      text-align: justify;
-      border: 1px solid var(--color-input-border);
-      padding: 12px;
-      border-radius: var(--radius);
-      background-color: #fff;
-      white-space: pre-line;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 16px 0;
-      font-size: 13px;
-    }
-
-    .delivery-note {
-      font-size: 13px;
-      color: var(--color-label);
-      margin-top: -4px;
-      margin-bottom: 16px;
-      background-color: #fff8e1;
-      padding: 8px;
-      border-left: 4px solid #ff6d5a;
-      border-radius: var(--radius);
-      display: none;
-    }
-
-    .pickup-note {
-      font-size: 12px;
-      color: #b45309;
-      margin-top: -12px;
-      margin-bottom: 16px;
-      display: none;
-    }
-
-    button[type="submit"],
-    #getLocationBtn {
-      background-color: var(--color-btn-bg);
-      color: var(--color-btn-text);
-      border: none;
-      padding: 12px;
-      width: 100%;
-      border-radius: var(--radius);
-      font-weight: 600;
-      font-size: var(--font-size-input);
-      cursor: pointer;
-      margin-bottom: 16px;
-    }
-
-    /* Remove margin-bottom for getLocationBtn to reduce space after date */
-    #getLocationBtn {
-      margin-bottom: 0;
-    }
-
-    button[type="submit"]:hover,
-    #getLocationBtn:hover {
-      background-color: #e05343;
-    }
-
-    #locationStatus {
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 8px; /* reduced */
-      min-height: 18px;
-    }
-
-    #pickupDateSection {
-      margin-top: 4px; /* added to reduce gap */
-    }
-
-    /* Popup styles */
-    #thankYouPopup {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0,0,0,0.5);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    #thankYouPopup .popup-content {
-      background: white;
-      border-radius: 12px;
-      padding: 24px 16px;
-      max-width: 320px;
-      text-align: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    }
-    #thankYouPopup .checkmark {
-      font-size: 48px;
-      color: #4CAF50;
-      margin-bottom: 16px;
-    }
-    #thankYouPopup h1 {
-      font-size: 20px;
-      margin-bottom: 12px;
-      color: #222;
-    }
-    #thankYouPopup p {
-      font-size: 15px;
-      color: #555;
-      line-height: 1.6;
-      margin: 0;
-    }
-    #thankYouPopup button {
-      margin-top: 20px;
-      background-color: #ff6d5a;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultra Wash Admin Dashboard</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
+<div class="layout">
 
-<form id="customerForm" method="POST" action="https://risetotop.app.n8n.cloud/webhook-test/ultrawash-form" novalidate>
-  <h1>Ultra Wash Customer Form</h1>
+  <div class="sidebar">
+    <div class="brand">Ultra Wash</div>
+    <nav>
+      <a href="index.html" class="active">🏠 Dashboard</a>
+      <a href="customer-form.html">📝 Customer Form</a>
+      <a href="update-form.html">🔧 Worker Update Form</a>
+    </nav>
+  </div>
 
-  <label for="name">Name</label>
-  <input id="name" name="name" type="text" placeholder="First Name, Last Name" required />
-
-  <label for="phone">Phone Number</label>
-  <input id="phone" name="phone" type="text" placeholder="+673 8221133 / 8221133" required />
-
-  <label for="service">Service</label>
-  <select id="service" name="service" required>
-    <option value="" disabled selected>Select service</option>
-    <option value="Self Drop-off & Pick-up">Self Drop-off & Pick-up</option>
-    <option value="Pick Up Only">Pick Up Only</option>
-    <option value="Delivery Only">Delivery Only</option>
-    <option value="Pick Up & Delivery">Pick Up & Delivery</option>
-  </select>
-
-  <div id="addressSection" style="display:none;">
-    <label for="address">Address</label>
-    <div class="description" id="addressDescription" style="display:block;">
-      Allow location access when prompted. If previously denied, please enable permissions in your device settings:<br><br>
-      <strong>Android:</strong> Settings &gt; Apps &gt; Your Browser &gt; Permissions &gt; Location<br>
-      <strong>iOS:</strong> Settings &gt; Privacy &gt; Location Services &gt; Your Browser<br><br>
-      Then click <strong>“Send My Exact Location”</strong> to share your coordinates.
+  <div class="main">
+    <div class="topbar">
+      <div class="title">Dashboard</div>
+      <div class="right">
+        <div class="toggle-darkmode"><div class="circle"></div></div>
+      </div>
     </div>
-    <textarea id="address" name="address" placeholder="Enter your address" rows="3"></textarea>
 
-    <!-- New exact location button and status -->
-    <button type="button" id="getLocationBtn" style="display:none;">📍 Send My Exact Location</button>
-    <div id="locationStatus"></div>
-    <input type="hidden" id="latitude" name="latitude" />
-    <input type="hidden" id="longitude" name="longitude" />
-  </div>
+    <div class="content">
 
-  <div id="pickupDateSection" style="display:none;">
-    <label for="pickupDate">Pick Up Date</label>
-    <input type="date" id="pickupDate" name="pickupDate" />
-    <div class="pickup-note" id="pickupNote">
-      <span style="font-style: normal;">📅</span> <em>Pick up available from Monday to Saturday.</em>
+      <div class="card">
+        <h2>Welcome to Ultra Wash Admin System</h2>
+        <p>Use the navigation below to quickly access forms and tools.</p>
+      </div>
+
+      <div class="flex">
+        <a class="card action-card" href="customer-form.html" style="flex:1; text-align:center;">
+          <h2>📝 Customer Form</h2>
+          <p>Create new customer submission</p>
+        </a>
+
+        <a class="card action-card" href="update-form.html" style="flex:1; text-align:center;">
+          <h2>🔧 Worker Update Form</h2>
+          <p>Update customer order details</p>
+        </a>
+      </div>
+
     </div>
+
   </div>
 
-  <div id="deliveryNote" class="delivery-note">
-    🕓 Please note that delivery will be made 1–2 days after pickup is completed.
-  </div>
-
-  <div class="terms-header" onclick="toggleTerms()">📄 Terms and Conditions (click to expand)</div>
-  <div class="terms-content" id="termsText">
-The services provided by Laundry Chief are subject to your compliance with and acceptance of the terms and conditions set forth below. Your use of Laundry Chief services (“Services”) indicates your agreement to be bound by the terms and conditions contained herein.
-
-Payment  
-The customer must complete payment of the agreed upon charges on or before the completion of the Services. All payments are non-refundable.
-
-Inventory  
-Laundry Chief is not responsible for any items not listed on the Collection Slip. The Customer agrees to be bound by the content of the Collection Slip.
-
-Garment Care  
-Laundry Chief will use reasonable efforts to maintain a high-quality cleaning service. Laundry Chief accepts no liability for damage due to normal cleaning of items with or without care instructions, or for dry clean only items, which are requested to be laundered by the Customer. Laundry Chief is not responsible for clothing bleeding, shrinking, or otherwise changing as a result of normal cleaning procedures.
-
-Loss or Damage  
-Missing or damaged items must be reported at the time of delivery. Our liability is limited to 10x the cleaning charge. We are not liable for preexisting damage, fabric weakness, or colorfast issues.
-
-Uncollected Items  
-Laundry Chief reserves the right to dispose of uncollected items after 120 days.
-
-Use of Third-Party Providers  
-We may outsource cleaning services without notice.
-  </div>
-
-  <div class="checkbox-label">
-    <input id="terms" name="terms" type="checkbox" required />
-    <label for="terms">I agree to the Terms & Conditions</label>
-  </div>
-
-  <button type="submit">Submit</button>
-</form>
-
-<!-- Thank you popup -->
-<div id="thankYouPopup">
-  <div class="popup-content">
-    <div class="checkmark">✅</div>
-    <h1>Thank you for choosing UltraWash!</h1>
-    <p>Your form has been successfully submitted.<br />
-    Our team will contact you shortly via WhatsApp.</p>
-    <button onclick="closePopup()">Close</button>
-  </div>
 </div>
 
-<script>
-  function toggleTerms() {
-    const terms = document.getElementById('termsText');
-    terms.style.display = terms.style.display === 'block' ? 'none' : 'block';
-  }
-
-  const serviceSelect = document.getElementById('service');
-  const addressSection = document.getElementById('addressSection');
-  const addressDescription = document.getElementById('addressDescription');
-  const deliveryNote = document.getElementById('deliveryNote');
-  const pickupDateSection = document.getElementById('pickupDateSection');
-  const pickupNote = document.getElementById('pickupNote');
-  const getLocationBtn = document.getElementById('getLocationBtn');
-  const locationStatus = document.getElementById('locationStatus');
-
-  serviceSelect.addEventListener('change', function () {
-    const selectedService = this.value;
-
-    // Reset all related UI
-    addressSection.style.display = 'none';
-    deliveryNote.style.display = 'none';
-    pickupDateSection.style.display = 'none';
-    pickupNote.style.display = 'none';
-    getLocationBtn.style.display = 'none';
-    locationStatus.textContent = '';
-
-    document.getElementById('address').required = false;
-    document.getElementById('pickupDate').required = false;
-    document.getElementById('address').value = '';
-    document.getElementById('pickupDate').value = '';
-    document.getElementById('latitude').value = '';
-    document.getElementById('longitude').value = '';
-
-    if (
-      selectedService === 'Pick Up & Delivery' ||
-      selectedService === 'Delivery Only' ||
-      selectedService === 'Pick Up Only'
-    ) {
-      addressSection.style.display = 'block';
-      getLocationBtn.style.display = 'block';
-
-      if (selectedService === 'Pick Up & Delivery') {
-        addressDescription.innerHTML = `Allow location access when prompted. If previously denied, please enable permissions in your device settings:<br><br>
-        <strong>Android:</strong> Settings &gt; Apps &gt; Your Browser &gt; Permissions &gt; Location<br>
-        <strong>iOS:</strong> Settings &gt; Privacy &gt; Location Services &gt; Your Browser<br><br>
-        Then click <strong>“Send My Exact Location”</strong> to share your coordinates.`;
-        deliveryNote.style.display = 'block';
-        pickupDateSection.style.display = 'block';
-        pickupNote.style.display = 'block';
-        document.getElementById('address').required = true;
-        document.getElementById('pickupDate').required = true;
-      } else if (selectedService === 'Delivery Only') {
-        addressDescription.innerHTML = `Allow location access when prompted. If previously denied, please enable permissions in your device settings:<br><br>
-        <strong>Android:</strong> Settings &gt; Apps &gt; Your Browser &gt; Permissions &gt; Location<br>
-        <strong>iOS:</strong> Settings &gt; Privacy &gt; Location Services &gt; Your Browser<br><br>
-        Then click <strong>“Send My Exact Location”</strong> to share your coordinates.`;
-        deliveryNote.style.display = 'block';
-        document.getElementById('address').required = true;
-      } else if (selectedService === 'Pick Up Only') {
-        addressDescription.innerHTML = `Allow location access when prompted. If previously denied, please enable permissions in your device settings:<br><br>
-        <strong>Android:</strong> Settings &gt; Apps &gt; Your Browser &gt; Permissions &gt; Location<br>
-        <strong>iOS:</strong> Settings &gt; Privacy &gt; Location Services &gt; Your Browser<br><br>
-        Then click <strong>“Send My Exact Location”</strong> to share your coordinates.`;
-        pickupDateSection.style.display = 'block';
-        pickupNote.style.display = 'block';
-        document.getElementById('address').required = true;
-        document.getElementById('pickupDate').required = true;
-      }
-    }
-  });
-
-  getLocationBtn.addEventListener('click', () => {
-    if (!navigator.geolocation) {
-      locationStatus.textContent = 'Geolocation is not supported by your browser.';
-      return;
-    }
-
-    locationStatus.textContent = 'Locating… please allow location access.';
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const lat = position.coords.latitude.toFixed(6);
-        const lng = position.coords.longitude.toFixed(6);
-
-        // Set hidden inputs
-        document.getElementById('latitude').value = lat;
-        document.getElementById('longitude').value = lng;
-
-        locationStatus.textContent = `Location captured: Latitude ${lat}, Longitude ${lng}`;
-      },
-      (error) => {
-        locationStatus.textContent = `Unable to retrieve location: ${error.message}`;
-      }
-    );
-  });
-
-  function closePopup() {
-    document.getElementById('thankYouPopup').style.display = 'none';
-  }
-
-  document.getElementById('customerForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    // Validate required fields & T&C
-    if (!this.checkValidity()) {
-      alert('Please complete all required fields and agree to the Terms & Conditions.');
-      return;
-    }
-
-    const service = document.getElementById('service').value;
-    const pickupDate = document.getElementById('pickupDate').value;
-
-    if ((service === 'Pick Up Only' || service === 'Pick Up & Delivery') && pickupDate) {
-      const selectedDate = new Date(pickupDate);
-      const day = selectedDate.getDay(); // Sunday=0, Monday=1,...Thursday=4
-
-      if (day === 0) {
-        alert('🚫 Pick up is only available from Monday to Saturday. Please choose a valid date.');
-        return;
-      }
-    }
-
-    // Prepare data for submission
-    const formData = new FormData(this);
-
-    try {
-      const response = await fetch(this.action, {
-        method: this.method,
-        body: formData,
-      });
-
-      if (response.ok) {
-        // Show thank you popup
-        document.getElementById('thankYouPopup').style.display = 'flex';
-
-        // Reset form & hide optional sections
-        this.reset();
-        addressSection.style.display = 'none';
-        deliveryNote.style.display = 'none';
-        pickupDateSection.style.display = 'none';
-        pickupNote.style.display = 'none';
-        getLocationBtn.style.display = 'none';
-        locationStatus.textContent = '';
-      } else {
-        alert('There was an error submitting the form. Please try again.');
-      }
-    } catch (error) {
-      alert('There was an error submitting the form. Please check your internet connection.');
-      console.error(error);
-    }
-  });
-</script>
-
+<script src="assets/script.js"></script>
 </body>
 </html>
