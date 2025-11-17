@@ -1,1 +1,340 @@
+/* =========================================================
+   ULTRA WASH ADMIN SYSTEM — GLOBAL STYLESHEET
+   Dashboard UI + Forms + Dark Mode
+   ---------------------------------------------------------
+   COLORS (LIGHT MODE)
+   ---------------------------------------------------------
+   Background       #f5f7fb
+   Card Background  #ffffff
+   Text Dark        #1f1f1f
+   Label Text       #555
+   Border           #e1e4ea
+   Accent (Primary) #ff6d5a  (Ultra Wash Branding)
+   Shadow           rgba(0,0,0,0.08)
+   ---------------------------------------------------------
+   COLORS (DARK MODE)
+   ---------------------------------------------------------
+   Background       #1f1f1f
+   Card Background  #2a2a2a
+   Text Light       #f7f7f7
+   Border           #3a3a3a
+   Accent           #ff6d5a
+   Shadow           rgba(0,0,0,0.25)
+========================================================= */
+
+:root {
+  --bg: #f5f7fb;
+  --card-bg: #ffffff;
+  --text: #1f1f1f;
+  --label: #555;
+  --border: #e1e4ea;
+  --accent: #ff6d5a;
+  --radius: 10px;
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #1f1f1f;
+  --topbar-bg: #ffffff;
+  --transition: 0.25s ease;
+}
+
+/* ===================== DARK MODE ====================== */
+
+body.dark {
+  --bg: #1f1f1f;
+  --card-bg: #2a2a2a;
+  --text: #f7f7f7;
+  --label: #cccccc;
+  --border: #3a3a3a;
+  --sidebar-bg: #252525;
+  --sidebar-text: #f7f7f7;
+  --topbar-bg: #2a2a2a;
+  --shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* ======================================================
+   GLOBAL RESETS
+====================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul { list-style: none; }
+
+/* ======================================================
+   LAYOUT — SIDEBAR + TOPBAR
+====================================================== */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* --------------------- Sidebar ---------------------- */
+
+.sidebar {
+  width: 240px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: background var(--transition);
+}
+
+.sidebar .brand {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--accent);
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: var(--radius);
+  color: var(--sidebar-text);
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* --------------------- Topbar ---------------------- */
+
+.topbar {
+  height: 60px;
+  width: 100%;
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: var(--transition);
+}
+
+.topbar .title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.topbar .right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ----------------- Dark Mode Toggle ---------------- */
+
+.toggle-darkmode {
+  width: 46px;
+  height: 22px;
+  border-radius: 20px;
+  background: var(--border);
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.toggle-darkmode .circle {
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: var(--transition);
+}
+
+body.dark .toggle-darkmode {
+  background: #555;
+}
+
+body.dark .toggle-darkmode .circle {
+  left: 26px;
+}
+
+/* ======================================================
+   PAGE CONTENT
+====================================================== */
+
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* ======================================================
+   CARDS / PANELS
+====================================================== */
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 25px;
+  transition: background var(--transition), border var(--transition);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+/* ======================================================
+   FORMS
+====================================================== */
+
+form label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: var(--label);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="datetime-local"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 14px;
+  margin-bottom: 18px;
+  transition: var(--transition);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--accent);
+}
+
+/* ======================================================
+   BUTTONS
+====================================================== */
+
+button,
+.btn {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+button:hover,
+.btn:hover {
+  background: #e75444;
+}
+
+/* ======================================================
+   CHECKBOX SERVICE STYLE
+====================================================== */
+
+.service-options {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.service-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 10px 15px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.service-option:hover {
+  border-color: var(--accent);
+}
+
+.service-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+/* ======================================================
+   UTILITIES
+====================================================== */
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.flex {
+  display: flex;
+  gap: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.center {
+  text-align: center;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
 
