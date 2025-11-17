@@ -36,14 +36,16 @@
 
       <div class="card">
         <h2>Customer Order Update</h2>
-        <p>Select a customer to auto-fill their details and update the order.</p>
+        <p>Select a customer and update service details.</p>
       </div>
 
-      <!-- ================= FORM CARD ================= -->
+      <!-- ======================== FORM START ======================= -->
       <div class="card">
-        <form id="updateFormPage">
+        <form id="updateFormPage" autocomplete="off">
 
-          <!-- ================= SECTION: SEARCH CUSTOMER ================= -->
+          <!-- ======================================================
+               SEARCH CUSTOMER
+          ====================================================== -->
           <div class="section-title">🔍 Search Customer</div>
 
           <label>Customer</label>
@@ -51,117 +53,121 @@
             type="text"
             id="customerRefSearch"
             placeholder="Search customer name or ID..."
-            autocomplete="off"
           />
 
-          <!-- Dropdown results list -->
           <div id="customerSearchList"
-               style="border:1px solid var(--border); padding:10px; margin-top:5px; 
+               style="border:1px solid var(--border); padding:10px; margin-top:5px;
                       border-radius:var(--radius); max-height:220px; overflow:auto; display:none;">
           </div>
 
-          <!-- Hidden customer ID -->
           <input type="hidden" id="customerRef" name="customerRef" />
 
-          <hr style="margin:25px 0;" />
+          <hr />
 
-          <!-- ================= SECTION: AUTO-FILLED INFO ================= -->
+          <!-- ======================================================
+               CUSTOMER DETAILS (AUTO-FILLED)
+          ====================================================== -->
           <div class="section-title">📄 Customer Details</div>
 
           <label>Customer Name</label>
           <input type="text" id="customerNameWorker" readonly />
 
           <label>Phone Number</label>
-          <input type="text" id="customerPhoneWorker" name="customerPhoneWorker" readonly />
+          <input type="text" id="customerPhoneWorker" readonly />
 
           <label>Service Type</label>
           <input type="text" id="serviceWorker" readonly />
 
           <label>Map Link</label>
-          <input type="text" id="mapLinkWorker" name="mapLinkWorker" readonly />
+          <input type="text" id="mapLinkWorker" readonly />
 
-          <!-- Backend address for worker -->
+          <!-- Backend address (sent to workflow) -->
           <input type="hidden" id="backendAddress" name="backendAddress" />
 
-          <hr style="margin:25px 0;" />
+          <hr />
 
-          <!-- ================= SECTION: PACKAGE INFO ================= -->
+          <!-- ======================================================
+               PACKAGE DETAILS
+          ====================================================== -->
           <div class="section-title">📦 Package Details</div>
 
           <label>Package Type</label>
           <input type="text" id="pricingServiceUpdateDisplay" readonly />
           <input type="hidden" id="pricingServiceUpdate" name="pricingServiceUpdate" />
 
-          <!-- ===== Membership Update ===== -->
+          <!-- Membership -->
           <div id="membershipFieldsUpdate" class="hidden">
             <label>Membership Plan</label>
-            <select id="membershipPlanUpdate" name="membershipPlanUpdate" disabled>
+            <select id="membershipPlanUpdate" disabled>
               <option value="">Select Plan</option>
               <option value="120-12-60">$120 – 12 trips (60kg)</option>
               <option value="100-2-50">$100 – 2x/week (50kg)</option>
             </select>
 
-            <div class="card" style="margin-top:15px;">
-              <h3>Membership Usage</h3>
+            <div class="card" style="margin-top:12px;">
+              <h3>Usage Update</h3>
 
               <label>Trips Used</label>
               <input type="number" id="tripsUsed" name="tripsUsed" value="1" min="1" />
 
-              <label>Weight Used (Kg)</label>
+              <label>Weight Used (kg)</label>
               <input type="number" id="weightUsed" name="weightUsed" min="0" step="0.1" />
 
-              <div class="card" style="margin-top:15px;">
-                <strong>Remaining Balance</strong>
+              <div class="card" style="margin-top:12px;">
+                <strong>Remaining</strong>
                 <p id="tripsBalance">Trips Remaining: --</p>
                 <p id="weightBalance">Weight Remaining: -- kg</p>
               </div>
             </div>
           </div>
 
-          <!-- ===== Jimat Update ===== -->
+          <!-- Jimat -->
           <div id="jimatFieldsUpdate" class="hidden">
-            <label>Jimat Box</label>
-            <select id="jimatPlanUpdate" name="jimatPlanUpdate" disabled>
-              <option value="">Select Box</option>
+            <label>Jimat Box Plan</label>
+            <select id="jimatPlanUpdate" disabled>
               <option value="16">$16 / 1 box</option>
               <option value="28">$28 / 2 boxes</option>
               <option value="40">$40 / 4 boxes</option>
             </select>
           </div>
 
-          <!-- ===== Wash Update ===== -->
+          <!-- Wash -->
           <div id="washFieldsUpdate" class="hidden">
             <label>Weight (kg)</label>
-            <input type="number" id="washKgUpdate" name="washKgUpdate" min="1" step="1" />
+            <input type="number" id="washKgUpdate" name="washKgUpdate" min="1" />
           </div>
 
-          <!-- ===== Folding Update ===== -->
+          <!-- Folding -->
           <div id="foldingFieldsUpdate" class="hidden">
             <label>Weight (kg)</label>
-            <input type="number" id="foldKgUpdate" name="foldKgUpdate" min="1" step="1" />
+            <input type="number" id="foldKgUpdate" name="foldKgUpdate" min="1" />
           </div>
 
-          <!-- ===== Ironing Update ===== -->
+          <!-- Ironing -->
           <div id="ironingFieldsUpdate" class="hidden">
             <label>Number of Pieces</label>
-            <input type="number" id="ironPcsUpdate" name="ironPcsUpdate" min="1" step="1" />
+            <input type="number" id="ironPcsUpdate" name="ironPcsUpdate" min="1" />
           </div>
 
-          <hr style="margin:25px 0;" />
+          <hr />
 
-          <!-- ================= SECTION: PRICE ================= -->
-          <div id="pricingContainer" class="card" style="background:var(--bg); border:1px dashed var(--border);">
+          <!-- ======================================================
+               PRICE PANEL
+          ====================================================== -->
+          <div class="card" style="background:var(--bg); border:1px dashed var(--border);">
             <h3>Total Price</h3>
             <p><strong id="totalPriceUpdate">--</strong></p>
             <p id="priceBreakdownUpdate">--</p>
           </div>
 
-          <input type="hidden" name="calculatedTotalPrice" id="calculatedTotalPrice" />
-          <input type="hidden" name="calculatedPriceBreakdown" id="calculatedPriceBreakdown" />
+          <input type="hidden" id="calculatedTotalPrice" name="calculatedTotalPrice" />
+          <input type="hidden" id="calculatedPriceBreakdown" name="calculatedPriceBreakdown" />
 
-          <hr style="margin:25px 0;" />
+          <hr />
 
-          <!-- ================= SECTION: ITEMS ================= -->
+          <!-- ======================================================
+               ADDITIONAL DETAILS
+          ====================================================== -->
           <label>Total Items</label>
           <input type="number" id="totalItems" name="totalItems" min="1" required />
 
@@ -170,16 +176,15 @@
         </form>
       </div>
 
-    </div><!-- end content -->
+    </div>
 
-  </div><!-- end main -->
+  </div>
 
-</div><!-- end layout -->
+</div>
 
 <script src="assets/script.js"></script>
 
 <script>
-  // Expand dropdown when typing
   const searchInput = document.querySelector("#customerRefSearch");
   const resultBox = document.querySelector("#customerSearchList");
 
